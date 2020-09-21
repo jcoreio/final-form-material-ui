@@ -1,7 +1,7 @@
 {
-  "name": "typescript-react-library-skeleton",
+  "name": "@jcoreio/final-form-material-ui",
   "version": "0.0.0-development",
-  "description": "my personal skeleton for TypeScript/React library NPM packages",
+  "description": "our material-ui bindings for react-final-form",
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
@@ -20,7 +20,7 @@
     "test:watch": "cross-env NODE_ENV=test BABEL_ENV=test mocha $npm_package_config_mocha --watch --watch-extensions js,ts,tsx",
     "test:debug": "cross-env NODE_ENV=test BABEL_ENV=test mocha --inspect-brk $npm_package_config_mocha",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov; codecov",
-    "prepublishOnly": "npm run clean && npm run prettier:check && npm run lint && npm test && npm run build",
+    "prepublishOnly": "npm run clean && npm run prettier:check && npm run lint && flow && npm test && npm run build",
     "open:coverage": "open coverage/lcov-report/index.html",
     "semantic-release": "semantic-release"
   },
@@ -71,19 +71,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedwards1211/typescript-react-library-skeleton.git"
+    "url": "https://github.com/jcoreio/final-form-material-ui.git"
   },
   "keywords": [
-    "typescript",
-    "react",
-    "skeleton"
+    "final-form",
+    "react-final-form",
+    "material-ui"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/typescript-react-library-skeleton/issues"
+    "url": "https://github.com/jcoreio/final-form-material-ui/issues"
   },
-  "homepage": "https://github.com/jedwards1211/typescript-react-library-skeleton#readme",
+  "homepage": "https://github.com/jcoreio/final-form-material-ui#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -104,12 +104,15 @@
     "@jedwards1211/commitlint-config": "^1.0.0",
     "@jedwards1211/eslint-config-react": "^4.0.0",
     "@jedwards1211/eslint-config-typescript": "^1.0.0",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@types/chai": "^4.2.0",
     "@types/enzyme": "^3.10.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.6",
     "@types/react": "^16.9.11",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "^4.2.0",
     "codecov": "^3.1.0",
@@ -121,6 +124,8 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-watch": "^4.0.2",
+    "final-form": "^4.20.1",
+    "flow-bin": "^0.134.0",
     "husky": "^1.1.4",
     "istanbul": "^0.4.5",
     "jsdom": "^15.2.1",
@@ -132,16 +137,22 @@
     "prettier-eslint": "^8.8.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-final-form": "^6.5.1",
     "rimraf": "^2.6.0",
     "semantic-release": "^15.1.4",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.11.0"
+    "@material-ui/core": "^4.11.0",
+    "react": "^16.11.0 || ^17.0.0",
+    "react-final-form": "^6.5.0"
   },
   "renovate": {
     "extends": [
