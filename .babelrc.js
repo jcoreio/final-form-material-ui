@@ -13,7 +13,9 @@ module.exports = function(api) {
       '@babel/preset-env',
       api.env('es5')
         ? { forceAllTransforms: true }
-        : { targets: { node: 'current' } },
+        : api.env(['test', 'coverage'])
+        ? { targets: { node: 'current' } }
+        : { targets: { esmodules: true }, modules: false },
     ],
     '@babel/preset-typescript',
     '@babel/preset-react',

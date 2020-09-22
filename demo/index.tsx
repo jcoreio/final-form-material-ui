@@ -197,7 +197,7 @@ render(
             </FormGroup>
           </Field>
           <Field name="size" label="Size" component={FormControl}>
-            <Field name="size" component={RadioGroup}>
+            <Field name="size" type="radio" component={RadioGroup}>
               <FormControlLabel
                 value="small"
                 label="Small"

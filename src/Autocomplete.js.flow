@@ -1,0 +1,13 @@
+import * as React from 'react'
+import { FieldRenderProps } from 'react-final-form'
+
+declare export default function AutocompleteWrapper({
+  ...$Exact<FieldRenderProps<any, any>>,
+  renderInput: ({
+    input: $Diff<
+      $PropertyType<FieldRenderProps, 'input'>,
+      { value: any, onChange: any }
+    >,
+    meta: $PropertyType<FieldRenderProps, 'meta'>,
+  }) => React.Node,
+}): React.Node

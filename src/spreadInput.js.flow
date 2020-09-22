@@ -1,0 +1,10 @@
+// @flow
+
+import * as React from 'react'
+import { type FieldRenderProps } from 'react-final-form'
+
+declare export default function spreadInput(
+  Component: React.ComponentType<
+    $Shape<$PropertyType<FieldRenderProps, 'input'>>
+  >
+): FieldRenderProps => React.Node

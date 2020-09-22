@@ -38,6 +38,9 @@ module.exports = {
         filename: 'bundle.js',
       },
   plugins,
+  resolve: {
+    extensions: ['.js', '.json', '.ts', '.tsx'],
+  },
   module: {
     rules: [
       {
@@ -46,7 +49,6 @@ module.exports = {
         options: {
           cacheDirectory: true,
           plugins: [
-            '@babel/plugin-transform-flow-strip-types',
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-export-default-from',
             '@babel/plugin-proposal-export-namespace-from',
@@ -57,10 +59,10 @@ module.exports = {
           presets: [
             ['@babel/preset-env', { targets: { browsers: 'last 2 versions' } }],
             '@babel/preset-react',
-            '@babel/preset-flow',
+            '@babel/preset-typescript',
           ],
         },
-        test: /\.js$/,
+        test: /\.tsx$/,
       },
     ],
   },
@@ -68,7 +70,7 @@ module.exports = {
 }
 
 if (!isTest) {
-  module.exports.entry = ['@babel/polyfill', './demo/index.js']
+  module.exports.entry = ['@babel/polyfill', './demo/index.tsx']
   module.exports.devServer = {
     port: 3000,
     contentBase: path.join(__dirname, 'demo'),

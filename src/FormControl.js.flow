@@ -1,0 +1,16 @@
+// @flow
+
+import * as React from 'react'
+import typeof FormControl from '@material-ui/core/FormControl'
+import typeof FormLabel from '@material-ui/core/FormLabel'
+import typeof FormHelperText from '@material-ui/core/FormHelperText'
+import { type FieldRenderProps } from 'react-final-form'
+
+declare export default function FormControlWrapper({
+  input: $PropertyType<FieldRenderProps, 'input'>,
+  meta: $PropertyType<FieldRenderProps, 'meta'>,
+  label?: ?string,
+  FormLabelProps?: ?React.ElementConfig<FormLabel>,
+  FormHelperTextProps?: ?React.ElementConfig<FormHelperText>,
+  children?: ?React.Node,
+}): React.Element<FormControl>

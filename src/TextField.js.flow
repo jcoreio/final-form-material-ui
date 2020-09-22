@@ -1,0 +1,9 @@
+// @flow
+
+import * as React from 'react'
+import { type FieldRenderProps } from 'react-final-form'
+import typeof TextField from '@material-ui/core/TextField'
+
+declare export default function TextFieldWrapper(
+  FieldRenderProps
+): React.Element<TextField>

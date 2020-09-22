@@ -1,0 +1,8 @@
+// @flow
+
+import * as React from 'react'
+import { type FieldRenderProps } from 'react-final-form'
+
+declare export default function CheckboxWrapper(
+  $PropertyType<FieldRenderProps, 'input'>
+): React.Node

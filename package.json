@@ -4,6 +4,10 @@
   "description": "our material-ui bindings for react-final-form",
   "main": "index.js",
   "sideEffects": false,
+  "files": [
+    "cjs",
+    "mjs"
+  ],
   "scripts": {
     "lint": "eslint $npm_package_config_lint",
     "lint:fix": "eslint $npm_package_config_lint",
@@ -12,10 +16,11 @@
     "prettier:check": "prettier --list-different .babelrc.js *.json *.md *.{ts,tsx} '{src,test}/**/*.{js,ts,tsx}'",
     "tsc": "tsc --noEmit",
     "tsc:watch": "npm run tsc -- --watch",
-    "clean": "rimraf es lib $(cd src; ls) *.js *.d.{ts,tsx}",
-    "build": "npm run clean && npm run build:types && npm run build:js",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir es --extensions \".ts,.tsx\" --source-maps inline && cross-env BABEL_ENV=es5 babel src --out-dir . --extensions \".ts,.tsx\"",
+    "clean": "rimraf mjs cjs",
+    "build": "npm run clean && npm run build:types && npm run build:js && npm run build:exports",
+    "build:types": "tsc --emitDeclarationOnly && (cd mjs; copy *.d.ts ../cjs) && flow && (cd src; copy *.js.flow ../cjs; copy *.js.flow ../mjs)",
+    "build:js": "babel src --out-dir mjs --extensions \".tsx\" --ignore \"src/**/*.spec.tsx\" && cross-env BABEL_ENV=es5 babel src --out-dir cjs --extensions \".tsx\" --ignore \"src/**/*.spec.tsx\"",
+    "build:exports": "node scripts/buildExports.js",
     "test": "cross-env NODE_ENV=test BABEL_ENV=es5 mocha $npm_package_config_mocha && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --reporter=text mocha $npm_package_config_mocha",
     "test:watch": "cross-env NODE_ENV=test BABEL_ENV=test mocha $npm_package_config_mocha --watch --watch-extensions js,ts,tsx",
     "test:debug": "cross-env NODE_ENV=test BABEL_ENV=test mocha --inspect-brk $npm_package_config_mocha",
@@ -126,6 +131,8 @@
     "eslint-watch": "^4.0.2",
     "final-form": "^4.20.1",
     "flow-bin": "^0.134.0",
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
     "husky": "^1.1.4",
     "istanbul": "^0.4.5",
     "jsdom": "^15.2.1",
@@ -141,6 +148,7 @@
     "rimraf": "^2.6.0",
     "semantic-release": "^15.1.4",
     "typescript": "^3.7.2",
+    "waait": "^1.0.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
@@ -170,6 +178,48 @@
     "automerge": true,
     "major": {
       "automerge": false
+    }
+  },
+  "exports": {
+    "./Autocomplete": {
+      "import": "./mjs/Autocomplete.js",
+      "require": "./cjs/Autocomplete.js"
+    },
+    "./Checkbox": {
+      "import": "./mjs/Checkbox.js",
+      "require": "./cjs/Checkbox.js"
+    },
+    "./FormControl.spec": {
+      "import": "./mjs/FormControl.spec.js",
+      "require": "./cjs/FormControl.spec.js"
+    },
+    "./FormControl": {
+      "import": "./mjs/FormControl.js",
+      "require": "./cjs/FormControl.js"
+    },
+    "./RadioGroup": {
+      "import": "./mjs/RadioGroup.js",
+      "require": "./cjs/RadioGroup.js"
+    },
+    "./Slider": {
+      "import": "./mjs/Slider.js",
+      "require": "./cjs/Slider.js"
+    },
+    "./spreadInput": {
+      "import": "./mjs/spreadInput.js",
+      "require": "./cjs/spreadInput.js"
+    },
+    "./Switch": {
+      "import": "./mjs/Switch.js",
+      "require": "./cjs/Switch.js"
+    },
+    "./TextField.spec": {
+      "import": "./mjs/TextField.spec.js",
+      "require": "./cjs/TextField.spec.js"
+    },
+    "./TextField": {
+      "import": "./mjs/TextField.js",
+      "require": "./cjs/TextField.js"
     }
   }
 }
