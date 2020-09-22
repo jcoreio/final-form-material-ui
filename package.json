@@ -2,7 +2,8 @@
   "name": "@jcoreio/final-form-material-ui",
   "version": "0.0.0-development",
   "description": "our material-ui bindings for react-final-form",
-  "main": "index.js",
+  "main": "cjs/index.js",
+  "module": "mjs/index.js",
   "sideEffects": false,
   "files": [
     "cjs",
@@ -19,7 +20,7 @@
     "clean": "rimraf mjs cjs",
     "build": "npm run clean && npm run build:types && npm run build:js && npm run build:exports",
     "build:types": "tsc --emitDeclarationOnly && (cd mjs; copy *.d.ts ../cjs) && flow && (cd src; copy *.js.flow ../cjs; copy *.js.flow ../mjs)",
-    "build:js": "babel src --out-dir mjs --extensions \".tsx\" --ignore \"src/**/*.spec.tsx\" && cross-env BABEL_ENV=es5 babel src --out-dir cjs --extensions \".tsx\" --ignore \"src/**/*.spec.tsx\"",
+    "build:js": "babel src --out-dir mjs --extensions \".ts,.tsx\" --ignore \"src/**/*.spec.tsx\" && cross-env BABEL_ENV=es5 babel src --out-dir cjs --extensions \".ts,.tsx\" --ignore \"src/**/*.spec.tsx\"",
     "build:exports": "node scripts/buildExports.js",
     "test": "cross-env NODE_ENV=test BABEL_ENV=es5 mocha $npm_package_config_mocha && cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov --reporter=text mocha $npm_package_config_mocha",
     "test:watch": "cross-env NODE_ENV=test BABEL_ENV=test mocha $npm_package_config_mocha --watch --watch-extensions js,ts,tsx",
