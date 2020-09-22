@@ -16,7 +16,6 @@ export default function TextFieldWrapper({
     <TextField
       {...rest}
       {...input}
-      name={name}
       helperText={showError ? meta.error || meta.submitError : undefined}
       error={showError}
     />
