@@ -8,6 +8,7 @@
   "files": [
     "cjs",
     "mjs",
+    "*.js",
     "*.js.flow"
   ],
   "scripts": {
